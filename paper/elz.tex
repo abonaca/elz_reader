@@ -1,0 +1,105 @@
+\documentclass[twocolumn]{aastex63}
+
+% typography
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath}
+
+\setlength{\parindent}{1.\baselineskip}
+\newcommand{\acronym}[1]{{\small{#1}}}
+\newcommand{\package}[1]{\textsl{#1}}
+\newcommand{\gaia}{\textsl{Gaia}}
+% \newcommand{\hst}{\textsl{HST}}
+% \newcommand{\pans}{\textsl{Pan-STARRS}}
+
+% \newcommand{\deg}{\ensuremath{\textrm{deg}}}
+\newcommand{\kpc}{\ensuremath{\textrm{kpc}}}
+\newcommand{\kms}{\ensuremath{\textrm{km}\,\textrm{s}^{-1}}}
+\newcommand{\masyr}{\ensuremath{\textrm{mas}\,\textrm{yr}^{-1}}}
+\newcommand{\feh}{\ensuremath{\textrm{[Fe/H]}}}
+\newcommand{\afe}{\ensuremath{\textrm{[$\alpha$/Fe]}}}
+
+\newcommand{\changes}[1]{{\textbf{#1}}}
+\hyphenation{kruijs-sen}
+
+% aastex parameters
+% \received{not yet; THIS IS A DRAFT}
+%\revised{not yet}
+%\accepted{not yet}
+% % Adds "Submitted to " the arguement.
+% \submitjournal{ApJ}
+\shorttitle{}
+\shortauthors{bonaca \& kruijssen}
+
+%@arxiver{}
+
+\begin{document}\sloppy\sloppypar\raggedbottom\frenchspacing % trust me
+
+\title{The Hitchhiker's Guide through the Galaxy}
+
+\correspondingauthor{Ana~Bonaca}
+\email{ana.bonaca@cfa.harvard.edu}
+
+\author[0000-0002-7846-9787]{Ana~Bonaca}
+\affil{Center for Astrophysics | Harvard \& Smithsonian, 60 Garden Street, Cambridge, MA 02138, USA}
+
+\author[0000-0002-8804-0212]{J.~M.~Diederik~Kruijssen}
+\affiliation{Astronomisches Rechen-Institut, Zentrum f\" ur Astronomie der Universit\" at Heidelberg, M\" onchhofstra\ss e 12-14, D-69120 Heidelberg, Germany}
+\affil{Center for Astrophysics | Harvard \& Smithsonian, 60 Garden Street, Cambridge, MA 02138, USA}
+
+
+\begin{abstract}\noindent % trust me
+Globular clusters and streams hitched the ride to the Milky Way, and the phase space shows their way.
+\end{abstract}
+
+\keywords{%
+stars:~kinematics~and~dynamics
+  ---
+Galaxy:~halo
+  ---
+Galaxy:~kinematics~and~dynamics
+}
+
+\section{Introduction}
+\label{sec:intro}
+
+Hypotheses:
+\begin{itemize}
+\item{We can associate streams with the Milky Way progenitor galaxies.}
+\item{Streams are clumped at the center of the progenitor with which they were accreted. Streams were dissolved because they experienced stronger tidal field than clusters stripped out at higher energies (which is why they remain bound until today). This explains why streams are clumpy in the phase-space, while globular clusters are not.}
+\item{Strength of Milky Way's tidal field at this location equals the gravitational pull of the progenitor, which is why everything fell apart here. Therefore, we can read off the mass of the progenitor from this location, and compare that to the neural net estimates.}
+\item{The span in angular momentum (and energy?) of clusters and streams is set by dynamical friction the progenitor experienced, which provides another way to estimate the mass of the progenitor galaxy.}
+\item{The energy of the progenitor's center (stream clump) maps to the accretion redshift.}
+\item{A massive globular cluster close to a stream clump was likely this progenitor's nuclear star cluster.}
+\item{Given our better understanding of the trail a galaxy leaves in the phase space, we can also update globular cluster and stream associations previously reported. Based on that, it seems like we have another retrograde progenitor in addition to Sequoia!}
+\item{Based on their proximity in the phase space, at least some streams considered so far as individual objects, may in fact be different parts of the same structure.}
+\end{itemize}
+
+Puzzles / spin-offs:
+\begin{itemize}
+\item{Why are both prograde and retrograde progenitors leaving trails like \textbackslash \textbackslash\ instead of \textbackslash\ /?}
+\item{It seems that there are some gaps in the phase space, both in the distribution of streams and clusters, and H3 stars. Are these just well-separated, distinct progenitors?}
+\item{Taking uncertainties into account, are the stream clumps actually distinct? (How strongly) Can we rule out a uniform distribution?}
+\item{Can we use metallicity of streams and field stars in this analysis? Do we expect it to follow the globular cluster trail?}
+\item{How are EMOSAICS clusters distributed in the phase space?}
+\end{itemize}
+
+
+
+\vspace{0.5cm}
+It is a pleasure to thank 
+
+\software{
+\package{Astropy} \citep{astropy, astropy:2018},
+\package{gala} \citep{gala},
+\package{IPython} \citep{ipython},
+\package{matplotlib} \citep{mpl},
+\package{numpy} \citep{numpy},
+\package{scipy} \citep{scipy}
+}
+
+\bibliographystyle{aasjournal}
+\bibliography{elz}
+
+
+\end{document}
