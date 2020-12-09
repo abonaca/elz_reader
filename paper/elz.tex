@@ -114,15 +114,15 @@ Galaxy:~kinematics~and~dynamics
 % \end{itemize}
 
 \section{Stream Orbit Fits}
-In this work we use stream orbits derived by \citet{bk2021}, and in this section provide a high-level overview of their fitting procedure.
+In this work we use stream orbits derived by \citet{bk2021}, and in this section provide a brief overview of their fitting procedure.
 Positions and velocities of stream stars trace the orbit of their progenitor \citep[e.g.,][]{kuepper2010}.
 Thanks to data released by the \gaia\ mission, 3D positions and two proper motion components are known for a sample of 23 streams without a discernible progenitor \citep{ibata2019, shipp2019, riley2020}.
-Radial velocities have been measured for five of these streams for full 6D phase-space information \citep{caldwell2020, li2020, bonaca2020b}.
+Radial velocities have been measured for five of these streams for full 6D phase-space information \citep{caldwell2020, li2020, bonaca2020b}.  {\color{red} need some words here on EDR3 updates as appropriate}
 
 Assuming a static, axisymmetric model of the Milky Way \citep[default \texttt{MilkyWayPotential}]{gala}, \citet{bk2021} used these stream data to constrain their orbits.
 They sampled the stream orbital parameters using a Monte Carlo Markov Chain ensemble sampler and provide direct samples from the posterior to account for correlations between parameters.
 In this work we characterize the orbit by its total energy, $E_{\rm tot}$, and the $z$ component of the angular momentum, $L_z$ (perpendicular to the Galactic disk)---both conserved quantities in the adopted gravitational potential.
-We use a right-handed coordinate system, such that $L_z<0$ denotes prograde orbits.
+We use a right-handed coordinate system, such that $L_z<0$ denotes prograde orbits.  {\color{red} add a note here on the use of Lperp?}
 
 \begin{figure*}
 \begin{center}
@@ -135,10 +135,10 @@ Globular clusters in close neighborhood of streams are plausible progenitors (cy
 \label{fig:elz}
 \end{figure*}
 
-\section{Streams in the phase space}
+\section{Streams in phase space}
 \label{sec:elz}
 We present the phase-space distribution of Galactic streams in Figure~\ref{fig:elz}.
-In the left panel, each stream is represented in energy and $L_z$ angular momentum with 1000 samples from the posterior distributions, while the medians of these distributions are shown as stars in the left panel.
+In the left panel, each stream is represented in energy and $L_z$ angular momentum with 1000 samples from the posterior distributions, while the medians of these distributions are shown as stars in the right panel.
 In both panels, stream markers are color-coded by the in-plane component of the angular momentum, $L_\perp=\sqrt{L_x^2+L_y^2}$.
 As a comparison, we include the phase-space distribution of giant stars from the H3 spectroscopic survey \citep[small black points on the left,][]{conroy2019}, and Galactic globular clusters \citep[small circles, colored by $L_\perp$,][]{baumgardt2019}.
 
