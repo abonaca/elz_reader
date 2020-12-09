@@ -36,33 +36,39 @@ def elz():
     
     # background globular clusters
     plt.sca(ax[1])
-    plt.scatter(tgc['lz'], tgc['etot'], marker='o', s=80, c=tgc['lperp'], edgecolors='none', linewidths=2, cmap='magma', vmin=0, vmax=6, label='')
-    plt.plot(tgc['lz'][ind_progenitor], tgc['etot'][ind_progenitor], 'o', color=color[1], zorder=0, ms=12, label='')
+    plt.scatter(tgc['lz'], tgc['etot'], marker='o', s=40, c=tgc['lperp'], edgecolors='none', linewidths=2, cmap='magma', vmin=0, vmax=6, label='')
+    plt.plot(tgc['lz'][ind_progenitor], tgc['etot'][ind_progenitor], 'o', color=color[1], zorder=0, ms=8, label='')
     
     # legend entries
-    plt.plot(10, 10, '*', color=mpl.cm.magma(0.45), ms=18, label='Streams')
-    plt.plot(10, 10, 'o', color=mpl.cm.magma(0.45), mec='none', ms=10, label='Globular clusters')
-    plt.plot(10, 10, 'o', color=mpl.cm.magma(0.45), mec=color[1], ms=10, mew=2, label='Tentative stream\nprogenitors')
+    f_color = 0.6
+    plt.plot(10, 10, '*', color=mpl.cm.magma(f_color), ms=18, mec='k', label='Streams')
+    plt.plot(10, 10, 'o', color=mpl.cm.magma(f_color), mec='none', ms=10, label='Globular clusters')
+    plt.plot(10, 10, 'o', color=mpl.cm.magma(f_color), mec=color[1], ms=10, mew=2, label='Tentative stream\nprogenitors')
     
+    offsets = get_offsets()
     
-    for name in names[:]:
+    for i, name in enumerate(names[:]):
         t = Table.read('../data/output/orbit_props_{:s}.fits'.format(name))
         
         lperp = np.nanmedian(np.sqrt(t['lx']**2 + t['ly']**2))
         color = lperp/6.
         
-        lz = np.nanmedian(t['lz']) + 0.03
-        etot = np.nanmedian(t['etot']) - 0.003
-        
+        # plot samples from the posterior
         plt.sca(ax[0])
         plt.plot(t['lz'], t['etot'], '.', alpha=0.5, ms=3, mew=0, color=mpl.cm.magma(color), rasterized=True, label='')
         
-        for i in range(2):
-            plt.sca(ax[i])
-            plt.text(lz, etot, name, fontsize='x-small')
+        # place labels
+        lz = ts['lz'][i] + offsets[name][0]
+        etot = ts['etot'][i] + offsets[name][1]
+        
+        for j in range(2):
+            plt.sca(ax[j])
+            #plt.text(lz, etot, name, fontsize='x-small')
+            plt.text(lz, etot, '${:s}$'.format(get_properties(name)['label']), fontsize='x-small', alpha=1, va='center', ha=offsets[name][2])
+    
     
     plt.sca(ax[1])
-    plt.scatter(ts['lz'], ts['etot'], c=ts['lperp'], s=400, marker='*', cmap='magma', vmin=0, vmax=6, label='')
+    plt.scatter(ts['lz'], ts['etot'], c=ts['lperp'], s=400, marker='*', edgecolors='k', cmap='magma', vmin=0, vmax=6, label='')
     
     for i in range(2):
         plt.sca(ax[i])
@@ -84,6 +90,36 @@ def elz():
     plt.tight_layout()
     plt.savefig('../paper/elz_streams.pdf')
 
+def get_offsets():
+    """Returns a dictionary for placing stream labels in the ELz"""
+    
+    offsets = dict()
+    offsets['leiptr'] = [0.0, -0.005, 'left']
+    offsets['gjoll'] = [0.15, -0.002, 'left']
+    offsets['gd1'] = [0.15, -0.002, 'left']
+    offsets['phlegethon'] = [0.0, 0.005, 'center']
+    offsets['ylgr'] = [0.15, -0.002, 'left']
+    offsets['wambelong'] = [0.0, -0.005, 'left']
+    offsets['fimbulthul'] = [0.15, -0.002, 'left']
+    offsets['ophiuchus'] = [0.0, -0.005, 'center']
+    offsets['elqui'] = [0.15, -0.002, 'left']
+    offsets['svol'] = [0.0, -0.004, 'right']
+    offsets['ravi'] = [-0.1, 0.002, 'right']
+    offsets['sylgr'] = [0.15, -0.002, 'left']
+    offsets['jhelum'] = [0.15, -0.002, 'left']
+    offsets['indus'] = [0.15, -0.002, 'left']
+    offsets['phoenix'] = [0.0, -0.004, 'right']
+    offsets['slidr'] = [0.15, 0.002, 'left']
+    offsets['atlas'] = [0.1, -0.003, 'left']
+    offsets['aliqa_uma'] = [0.15, -0.003, 'left']
+    offsets['turbio'] = [-0.15, 0.00, 'right']
+    offsets['turranburra'] = [-0.0, -0.003, 'right']
+    offsets['fjorm'] = [0.0, -0.004, 'right']
+    offsets['triangulum'] = [0.2, -0.005, 'center']
+    offsets['willka_yaku'] = [-0.2, 0.005, 'center']
+    
+    return offsets
+
 def elz_progenitors():
     """Figure 2: streams in ELz with relevant Naidu+20 substructure contours"""
     
@@ -96,8 +132,8 @@ def elz_progenitors():
     titles = ['Gaia Enceladus', 'Sagittarius', 'Thamnos', 'Sequoia', "I'itoi", 'Arjuna', 'Helmi', 'Wukong']
     colors = ['#ffa22f', '#223195', '#3dabdb', '#ba532e', '#9a4526', '#6c301b', '#ca5a87', '#752c84']
     
-    lw = 8
-    alpha = 0.6
+    lw = 2
+    alpha = 0.8
     
     plt.close()
     fig, ax = plt.subplots(1,1,figsize=(6.5,6))
@@ -111,23 +147,91 @@ def elz_progenitors():
         plt.plot([10,20], [10,10], '-', color=color, lw=lw, alpha=alpha, label=titles[i])
 
     # plot streams
-    plt.plot(ts['lz'], ts['etot'], '*', ms=14, mec='k', color='none', label='')
+    plt.plot(ts['lz'], ts['etot'], '*', ms=16, mec='k', mew=1.2, alpha=0.7, color='none', label='')
     
     # label streams
-    for name in names[:]:
-        t = Table.read('../data/output/orbit_props_{:s}.fits'.format(name))
-        lz = np.nanmedian(t['lz']) + 0.03
-        etot = np.nanmedian(t['etot']) - 0.005
-        
-        plt.text(lz, etot, name, fontsize='x-small', alpha=0.8)
+    offsets = get_offsets()
     
-    plt.legend(handlelength=1.5, ncol=3, loc=9, fontsize='x-small', framealpha=0.9)
+    for i, name in enumerate(names[:]):
+        lz = ts['lz'][i] + offsets[name][0]
+        etot = ts['etot'][i] + offsets[name][1]
+        
+        plt.text(lz, etot, '${:s}$'.format(get_properties(name)['label']), fontsize='x-small', alpha=0.7, va='center', ha=offsets[name][2])
+    
+    plt.legend(handlelength=1.5, ncol=3, loc=9, fontsize='x-small', framealpha=0.8)
     
     plt.xlim(-4.5,4.5)
     plt.ylim(-0.17, -0.041)
     plt.xlabel('$L_z$ [kpc$^2$ Myr$^{-1}$]')
     plt.ylabel('$E_{tot}$ [kpc$^2$ Myr$^{-2}$]')
     
+    plt.tight_layout()
+    plt.savefig('../paper/stream_hosts.pdf')
+
+def elz_origin():
+    """Figure 2: streams in ELz with relevant Naidu+20 substructure contours"""
+    
+    # streams
+    ts = Table.read('../../disrupted_gc/data/overall_summary.fits')
+    names = get_names()
+    
+    # plot configs
+    labels = ['gse', 'sgr', 'thamnos', 'sequoia', 'iitoi', 'arjuna', 'helmi',  'wukong']
+    titles = ['Gaia Enceladus', 'Sagittarius', 'Thamnos', 'Sequoia', "I'itoi", 'Arjuna', 'Helmi', 'Wukong']
+    colors = ['#ffa22f', '#223195', '#3dabdb', '#ba532e', '#9a4526', '#6c301b', '#ca5a87', '#752c84']
+    
+    lw = 2
+    alpha = 0.8
+    
+    labels_origin = ['insitu', 'exsitu']
+    titles_origin = ['In-situ halo', 'Ex-situ halo']
+    colors_origin = ['0.6', '0.2']
+    ls_origin = ['--', '-']
+    
+    
+    plt.close()
+    fig, ax = plt.subplots(1,2,figsize=(13,6))
+    
+    plt.sca(ax[0])
+    # plot origin contours
+    for i, label in enumerate(labels_origin):
+        kde = np.load('../data/kde_{:s}.npz'.format(label))
+        color = colors_origin[i]
+
+        plt.contour(kde['X'][0], kde['Y'][0], kde['Z'][0], linestyles=ls_origin[i], colors=color, levels=[0.2*np.max(kde['Z'][0])], linewidths=lw, alpha=alpha)
+        plt.plot([10,20], [10,10], ls=ls_origin[i], color=color, lw=lw, alpha=alpha, label=titles_origin[i])
+
+    
+    plt.sca(ax[1])
+    # plot progenitor contours
+    for i, label in enumerate(labels):
+        kde = np.load('../data/kde_{:s}.npz'.format(label))
+        color = colors[i]
+
+        plt.contour(kde['X'][0], kde['Y'][0], kde['Z'][0], colors=color, levels=[0.2*np.max(kde['Z'][0])], linewidths=lw, alpha=alpha)
+        plt.plot([10,20], [10,10], '-', color=color, lw=lw, alpha=alpha, label=titles[i])
+
+    for j in range(2):
+        plt.sca(ax[j])
+        # plot streams
+        plt.plot(ts['lz'], ts['etot'], '*', ms=16, mec='k', mew=1.2, alpha=0.7, color='none', label='')
+        
+        # label streams
+        offsets = get_offsets()
+        
+        for i, name in enumerate(names[:]):
+            lz = ts['lz'][i] + offsets[name][0]
+            etot = ts['etot'][i] + offsets[name][1]
+            
+            plt.text(lz, etot, '${:s}$'.format(get_properties(name)['label']), fontsize='x-small', alpha=0.7, va='center', ha=offsets[name][2])
+        
+            plt.legend(handlelength=1.5, ncol=3, loc=9, fontsize='x-small', framealpha=0.8)
+            
+            plt.xlim(-4.5,4.5)
+            plt.ylim(-0.17, -0.041)
+            plt.xlabel('$L_z$ [kpc$^2$ Myr$^{-1}$]')
+            plt.ylabel('$E_{tot}$ [kpc$^2$ Myr$^{-2}$]')
+        
     plt.tight_layout()
     plt.savefig('../paper/stream_hosts.pdf')
     
@@ -149,7 +253,7 @@ def sky_orbits():
     
     dt = 0.5*u.Myr
     wangle = 180*u.deg
-    ra_off = 142*u.deg
+    ra_off = 120*u.deg
     l_off = 0*u.deg
     
     colors = [mpl.cm.plasma(0.95*x/N) for x in range(N)]
@@ -223,9 +327,9 @@ def sky_orbits():
     
     plt.sca(ax[1])
     plt.grid(ls=':')
-    plt.xlabel('l [deg]')
-    plt.ylabel('b [deg]')
+    plt.xlabel('Galactic longitude [deg]')
+    plt.ylabel('Galactic latitude [deg]')
     
     
-    plt.tight_layout()
+    plt.tight_layout(h_pad=2)
     plt.savefig('../paper/sky_orbits.pdf')

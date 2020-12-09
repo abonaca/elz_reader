@@ -745,11 +745,89 @@ def phase_space_h3():
     plt.tight_layout()
     #plt.savefig('../plots/phase_space_progenitors.png')
 
-def progenitors_kde():
-    """Save smooth distributions for each progenitos"""
+
+def origin_kde():
+    """Save smooth distributions for in-situ and ex-situ components"""
     
     # h3 giants
     th = Table.read('../data/rcat_substructure.fits')
+    print(np.array(np.unique(th['Substructure_ID'])))
+    
+    #prog_ids = ['GSE', 'HS', 'Iitoi', 'Sequo', 'Arjun', 'Sgr', 'Thamn', 'Wuk']
+    #labels = ['gse', 'helmi', 'iitoi', 'sequoia', 'arjuna', 'sgr', 'thamnos', 'wukong']
+    
+    ind_in = (th['Substructure_ID']=='Aleph') | (th['Substructure_ID']=='HiAlp') | (th['Substructure_ID']=='MWTD')
+    ind_ex = (th['Substructure_ID']=='uncla') & ~((th['Substructure_ID']=='Aleph') | (th['Substructure_ID']=='HiAlp') | (th['Substructure_ID']=='MWTD'))
+    ind = [ind_in, ind_ex]
+    labels = ['insitu', 'exsitu']
+    
+    cx = ['Lz', 'Lz', 'Lz', 'Lx']
+    cy = ['E_tot_pot1', 'Lperp', 'Ly', 'Ly']
+    
+    # set up boundaries of the 2D output array
+    lz_min, lz_max = -4.5, 4.5
+    ly_min, ly_max = -7, 7
+    lx_min, lx_max = -5.5, 5.5
+    lperp_min, lperp_max = 0, 7
+    e_min, e_max = -0.18, -0.03
+    
+    xmin = np.array([lz_min, lz_min, lz_min, lx_min])
+    xmax = np.array([lz_max, lz_max, lz_max, lx_max])
+    ymin = np.array([e_min, lperp_min, ly_min, ly_min])
+    ymax = np.array([e_max, lperp_max, ly_max, ly_max])
+    
+    # set up output arrays
+    X1, Y1 = np.mgrid[lz_min:lz_max:200j, e_min:e_max:200j]
+    X2, Y2 = np.mgrid[lz_min:lz_max:200j, lperp_min:lperp_max:200j]
+    X3, Y3 = np.mgrid[lz_min:lz_max:200j, ly_min:ly_max:200j]
+    X4, Y4 = np.mgrid[lx_min:lx_max:200j, ly_min:ly_max:200j]
+    X = np.array([X1, X2, X3, X4])
+    Y = np.array([Y1, Y2, Y3, Y4])
+    
+    positions1 = np.vstack([X1.ravel(), Y1.ravel()])
+    positions2 = np.vstack([X2.ravel(), Y2.ravel()])
+    positions3 = np.vstack([X3.ravel(), Y3.ravel()])
+    positions4 = np.vstack([X4.ravel(), Y4.ravel()])
+    positions = np.array([positions1, positions2, positions3, positions4])
+    
+    # figure sizing
+    nrow = 4
+    ncol = len(labels)
+    da = 2.5
+    
+    plt.close()
+    fig, ax = plt.subplots(nrow, ncol, figsize=(ncol*da, nrow*da), sharex='row', sharey='row')
+    
+    for i in range(ncol):
+        #ind = th['Substructure_ID']==prog_ids[i]
+        t_ = th[ind[i]]
+        Z = np.zeros_like(X)
+        
+        for j in range(nrow):
+            values = np.vstack([t_[cx[j]], t_[cy[j]]])
+            kernel = gaussian_kde(values)
+            Z[j] = np.reshape(kernel(positions[j]).T, X[j].shape)
+        
+            plt.sca(ax[j][i])
+            
+            plt.imshow(np.rot90(Z[j]), extent=[xmin[j], xmax[j], ymin[j], ymax[j]])
+            plt.plot(values[0], values[1], 'k.', ms=1, alpha=0.1)
+            plt.xlim(xmin[j], xmax[j])
+            plt.ylim(ymin[j], ymax[j])
+            plt.gca().set_aspect('auto')
+        
+        # save
+        np.savez('../data/kde_{:s}'.format(labels[i]), X=X, Y=Y, Z=Z, xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax)
+    
+    plt.tight_layout()
+
+def progenitors_kde():
+    """Save smooth distributions for each progenitors"""
+    
+    # h3 giants
+    th = Table.read('../data/rcat_substructure.fits')
+    print(np.array(np.unique(th['Substructure_ID'])))
+    
     prog_ids = ['GSE', 'HS', 'Iitoi', 'Sequo', 'Arjun', 'Sgr', 'Thamn', 'Wuk']
     labels = ['gse', 'helmi', 'iitoi', 'sequoia', 'arjuna', 'sgr', 'thamnos', 'wukong']
     
@@ -812,6 +890,8 @@ def progenitors_kde():
         np.savez('../data/kde_{:s}'.format(labels[i]), X=X, Y=Y, Z=Z, xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax)
     
     plt.tight_layout()
+
+
 
 
 def stream_gc_connections():
