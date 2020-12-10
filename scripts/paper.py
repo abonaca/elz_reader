@@ -175,6 +175,14 @@ def elz_origin():
     ts = Table.read('../../disrupted_gc/data/overall_summary.fits')
     names = get_names()
     
+    to = Table.read('../data/stream_origin.fits')
+    ind_dg = to['type']=='DG'
+    ind_gc = ~ind_dg
+    ind_type = [ind_gc, ind_dg]
+    marker_type = ['*', 'p']
+    ms_type = [16, 12]
+    label_type = ['GC', 'DG']
+    
     # plot configs
     labels = ['gse', 'sgr', 'thamnos', 'sequoia', 'iitoi', 'arjuna', 'helmi',  'wukong']
     titles = ['Gaia Enceladus', 'Sagittarius', 'Thamnos', 'Sequoia', "I'itoi", 'Arjuna', 'Helmi', 'Wukong']
@@ -193,6 +201,7 @@ def elz_origin():
     fig, ax = plt.subplots(1,2,figsize=(13,6))
     
     plt.sca(ax[0])
+    
     # plot origin contours
     for i, label in enumerate(labels_origin[:1]):
         kde = np.load('../data/kde_{:s}.npz'.format(label))
@@ -203,6 +212,7 @@ def elz_origin():
 
     
     plt.sca(ax[1])
+    
     # plot progenitor contours
     for i, label in enumerate(labels):
         kde = np.load('../data/kde_{:s}.npz'.format(label))
@@ -213,8 +223,14 @@ def elz_origin():
 
     for j in range(2):
         plt.sca(ax[j])
+        
         # plot streams
-        plt.plot(ts['lz'], ts['etot'], '*', ms=16, mec='k', mew=1.2, alpha=0.7, color='none', label='')
+        for e in range(2):
+            if j==0:
+                plt.plot(ts['lz'][ind_type[e]], ts['etot'][ind_type[e]], marker_type[e], ms=ms_type[e], mec='k', mew=1.2, alpha=0.7, color='none', label='{:s} stream'.format(label_type[e]))
+            else:
+                plt.plot(ts['lz'][ind_type[e]], ts['etot'][ind_type[e]], marker_type[e], ms=ms_type[e], mec='k', mew=1.2, alpha=0.7, color='none', label='')
+        #plt.plot(ts['lz'], ts['etot'], '*', ms=16, mec='k', mew=1.2, alpha=0.7, color='none', label='')
         
         # label streams
         offsets = get_offsets()
@@ -225,8 +241,8 @@ def elz_origin():
             
             plt.text(lz, etot, '${:s}$'.format(get_properties(name)['label']), fontsize='x-small', alpha=0.7, va='center', ha=offsets[name][2])
             
-        if j>0:
-            plt.legend(handlelength=1.5, ncol=3, loc=9, fontsize='x-small', framealpha=0.8)
+        #if j>0:
+        plt.legend(handlelength=1.5, ncol=3, loc=9, fontsize='x-small', framealpha=0.8)
         
         plt.text(0.07,0.07, titles_origin[j], fontsize='medium', transform=plt.gca().transAxes)
         
@@ -336,3 +352,41 @@ def sky_orbits():
     
     plt.tight_layout(h_pad=2)
     plt.savefig('../paper/sky_orbits.pdf')
+
+def table_summary():
+    """create a table with summary of the stream origin"""
+    
+    t = dict()
+    t['name'] = get_names()
+    t['Name'] = [get_properties(name)['label'] for name in t['name']]
+    N = len(t['name'])
+    
+    # host
+    t['host'] = ['Sagittarius', 'Sagittarius', 'itself', 'Gaia Enceladus', 'Sagittarius', 'Sequoia / Arjuna / I\'itoi', 'Sequoia', '(Gaia Enceladus)', '(Gaia Enceladus)', 'Sequoia', 'Gaia Enceladus', 'Sequoia', 'Helmi/Wukong', 'Helmi/Wukong', 'Sagittarius', 'in situ', 'Helmi/Wukong', 'Cetus', 'Cetus', 'Sagittarius', 'Sequoia / Arjuna / I\'itoi', 'Cetus', 'Sequoia / Arjuna / I\'itoi']
+    
+    # progenitor
+    t['progenitor'] = [np.nan, np.nan, 'itself', 'NGC 5139', 'NGC 4590', np.nan, 'NGC 3201', 'itself', 'itself', np.nan, np.nan, np.nan, np.nan, 'NGC 5024', 'NGC 5272', np.nan, 'NGC 5024', 'NGC 5824', 'NGC 5824', np.nan, np.nan, np.nan, np.nan]
+    
+    # progenitor type
+    t['type'] = ['DG'  if name in ['elqui', 'indus', 'jhelum'] else 'GC' for name in t['name']]
+    
+    # metallicity
+    t['feh'] = [-2.4, -2.4, -2.2, -1.5, -2.16, -2.3, -1.5, -2.1, -2.1, -1.6, -1.95, -2.7, -1.6, -1.1, -1.7, -1.6, -2.7, -1.9, np.nan, np.nan, -2.2, np.nan, -1.9]
+    
+    tout = Table(t)
+    tout.pprint()
+    tout.write('../data/stream_origin.fits', overwrite=True)
+    
+def latex_table():
+    """Create a latex table"""
+    
+    t = Table.read('../data/stream_origin.fits')
+    N = len(t)
+    
+    f = open('../paper/stream_origin.tex', 'w')
+    for i in range(N):
+        t_ = t[i]
+        f.write('{:s} & {:s} & {:s} & {:s} & {:.1f}\\\\ \n'.format(t_['Name'], t_['host'], t_['progenitor'], t_['type'], t_['feh']))
+        
+    f.close()
+
