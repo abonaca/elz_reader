@@ -166,7 +166,7 @@ def elz_progenitors():
     plt.ylabel('$E_{tot}$ [kpc$^2$ Myr$^{-2}$]')
     
     plt.tight_layout()
-    plt.savefig('../paper/stream_hosts.pdf')
+    #plt.savefig('../paper/stream_hosts.pdf')
 
 def elz_origin():
     """Figure 2: streams in ELz with relevant Naidu+20 substructure contours"""
@@ -184,7 +184,7 @@ def elz_origin():
     alpha = 0.8
     
     labels_origin = ['insitu', 'exsitu']
-    titles_origin = ['In-situ halo', 'Ex-situ halo']
+    titles_origin = ['In-situ', 'Ex-situ']
     colors_origin = ['0.6', '0.2']
     ls_origin = ['--', '-']
     
@@ -194,7 +194,7 @@ def elz_origin():
     
     plt.sca(ax[0])
     # plot origin contours
-    for i, label in enumerate(labels_origin):
+    for i, label in enumerate(labels_origin[:1]):
         kde = np.load('../data/kde_{:s}.npz'.format(label))
         color = colors_origin[i]
 
@@ -224,14 +224,17 @@ def elz_origin():
             etot = ts['etot'][i] + offsets[name][1]
             
             plt.text(lz, etot, '${:s}$'.format(get_properties(name)['label']), fontsize='x-small', alpha=0.7, va='center', ha=offsets[name][2])
-        
-            plt.legend(handlelength=1.5, ncol=3, loc=9, fontsize='x-small', framealpha=0.8)
             
-            plt.xlim(-4.5,4.5)
-            plt.ylim(-0.17, -0.041)
-            plt.xlabel('$L_z$ [kpc$^2$ Myr$^{-1}$]')
-            plt.ylabel('$E_{tot}$ [kpc$^2$ Myr$^{-2}$]')
+        if j>0:
+            plt.legend(handlelength=1.5, ncol=3, loc=9, fontsize='x-small', framealpha=0.8)
         
+        plt.text(0.07,0.07, titles_origin[j], fontsize='medium', transform=plt.gca().transAxes)
+        
+        plt.xlim(-4.5,4.5)
+        plt.ylim(-0.17, -0.041)
+        plt.xlabel('$L_z$ [kpc$^2$ Myr$^{-1}$]')
+        plt.ylabel('$E_{tot}$ [kpc$^2$ Myr$^{-2}$]')
+    
     plt.tight_layout()
     plt.savefig('../paper/stream_hosts.pdf')
     

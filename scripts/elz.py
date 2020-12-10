@@ -756,8 +756,8 @@ def origin_kde():
     #prog_ids = ['GSE', 'HS', 'Iitoi', 'Sequo', 'Arjun', 'Sgr', 'Thamn', 'Wuk']
     #labels = ['gse', 'helmi', 'iitoi', 'sequoia', 'arjuna', 'sgr', 'thamnos', 'wukong']
     
-    ind_in = (th['Substructure_ID']=='Aleph') | (th['Substructure_ID']=='HiAlp') | (th['Substructure_ID']=='MWTD')
-    ind_ex = (th['Substructure_ID']=='uncla') & ~((th['Substructure_ID']=='Aleph') | (th['Substructure_ID']=='HiAlp') | (th['Substructure_ID']=='MWTD'))
+    ind_in = (th['Substructure_ID']=='HiAlp') | (th['Substructure_ID']=='Aleph') #| (th['Substructure_ID']=='MWTD')
+    ind_ex = ~(th['Substructure_ID']=='uncla') & ~((th['Substructure_ID']=='Aleph') | (th['Substructure_ID']=='HiAlp') | (th['Substructure_ID']=='MWTD'))
     ind = [ind_in, ind_ex]
     labels = ['insitu', 'exsitu']
     
@@ -991,3 +991,30 @@ def stream_gc_connections_eq():
     
     plt.tight_layout()
     plt.savefig('../plots/gc_streams_sky.png')
+
+
+def stream_planes():
+    """"""
+    streams = [['gjoll', 'leiptr', 'phlegethon'], ['gd1', 'wambelong','ylgr']]
+    N = len(streams)
+    colors = ['r', 'b']
+    
+    wangle = 180*u.deg
+    ra_off = -90*u.deg
+    
+    plt.close()
+    fig = plt.figure(figsize=(12,5.2))
+    ax = fig.add_subplot(111, projection='mollweide')
+    
+    for i in range(N):
+        for j in range(len(streams[i])):
+            pkl = pickle.load(open('../data/streams/data_{:s}.pkl'.format(streams[i][j]), 'rb'))
+            plt.plot((pkl['dec'][0]+ra_off).wrap_at(wangle).rad, pkl['dec'][1].rad, 'o', color=colors[i], ms=8, label=streams[i][j])
+            plt.text((pkl['dec'][0]+ra_off).wrap_at(wangle).rad[-1], pkl['dec'][1].rad[-1], streams[i][j], fontsize='xx-small')
+    
+    plt.grid(ls=':')
+    plt.xlabel('R.A. + {:.0f} [deg]'.format(ra_off.value))
+    plt.ylabel('Dec [deg]')
+    
+    plt.tight_layout()
+    plt.savefig('../plots/retrograde_streams.png')
