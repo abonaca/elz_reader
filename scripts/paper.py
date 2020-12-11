@@ -365,7 +365,7 @@ def table_summary():
     t['host'] = ['Sagittarius', 'Sagittarius', 'itself', 'Gaia Enceladus', 'Sagittarius', 'Sequoia / Arjuna / I\'itoi', 'Sequoia', '(Gaia Enceladus)', '(Gaia Enceladus)', 'Sequoia', 'Gaia Enceladus', 'Sequoia', 'Helmi/Wukong', 'Helmi/Wukong', 'Sagittarius', 'in situ', 'Helmi/Wukong', 'Cetus', 'Cetus', 'Sagittarius', 'Sequoia / Arjuna / I\'itoi', 'Cetus', 'Sequoia / Arjuna / I\'itoi']
     
     # progenitor
-    t['progenitor'] = [np.nan, np.nan, 'itself', 'NGC 5139', 'NGC 4590', np.nan, 'NGC 3201', 'itself', 'itself', np.nan, np.nan, np.nan, np.nan, 'NGC 5024', 'NGC 5272', np.nan, 'NGC 5024', 'NGC 5824', 'NGC 5824', np.nan, np.nan, np.nan, np.nan]
+    t['progenitor'] = [np.nan, np.nan, 'itself', 'NGC 5139', 'NGC 4590', np.nan, 'NGC 3201', 'itself', 'itself', np.nan, np.nan, np.nan, np.nan, 'NGC 5024', np.nan, 'NGC 5272', 'NGC 5024', 'NGC 5824', 'NGC 5824', np.nan, np.nan, np.nan, np.nan]
     
     # progenitor type
     t['type'] = ['DG'  if name in ['elqui', 'indus', 'jhelum'] else 'GC' for name in t['name']]
