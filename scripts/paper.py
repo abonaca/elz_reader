@@ -371,7 +371,7 @@ def table_summary():
     t['type'] = ['DG'  if name in ['elqui', 'indus', 'jhelum'] else 'GC' for name in t['name']]
     
     # metallicity
-    t['feh'] = [-2.4, -2.4, -2.2, -1.5, -2.16, -2.3, -1.5, -2.1, -2.1, -1.6, -1.95, -1.6, -2.7, -1.6, -1.7, -1.1, -2.7, -1.9, np.nan, np.nan, -2.2, np.nan, -1.9]
+    t['feh'] = [-2.4, -2.4, -2.2, -1.5, -2.16, -2.3, -1.5, -2.1, -2.1, -1.6, -1.95, -1.6, -2.7, np.nan, -1.7, -1.1, -2.7, -1.9, np.nan, np.nan, -2.2, np.nan, -1.9]
     
     tout = Table(t)
     tout.pprint()
