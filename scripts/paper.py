@@ -184,9 +184,9 @@ def elz_origin():
     label_type = ['globular cluster\n', 'dwarf galaxy\n']
     
     # plot configs
-    labels = ['gse', 'sgr', 'thamnos', 'sequoia', 'iitoi', 'arjuna', 'helmi',  'wukong']
-    titles = ['Gaia Enceladus', 'Sagittarius', 'Thamnos', 'Sequoia', "I'itoi", 'Arjuna', 'Helmi', 'Wukong']
-    colors = ['#ffa22f', '#223195', '#3dabdb', '#ba532e', '#9a4526', '#6c301b', '#ca5a87', '#752c84']
+    labels = ['gse', 'sgr', 'cetus', 'sequoia', 'iitoi', 'arjuna', 'helmi',  'wukong', 'thamnos']
+    titles = ['Gaia Enceladus', 'Sagittarius', 'Cetus', 'Sequoia', "I'itoi", 'Arjuna', 'Helmi', 'Wukong', 'Thamnos']
+    colors = ['#ffa22f', '#223195', '#0085ff', '#ba532e', '#9a4526', '#6c301b', '#ca5a87', '#752c84', '#3dabdb']
     
     lw = 2
     alpha = 0.8
@@ -425,10 +425,10 @@ def table_summary():
     N = len(t['name'])
     
     # host
-    t['host'] = ['Sagittarius', 'Sagittarius', 'itself', 'Gaia Enceladus', 'Sagittarius', 'Sequoia / Arjuna / I\'itoi', 'Sequoia', '(Gaia Enceladus)', '(Gaia Enceladus)', 'Sequoia', 'Gaia Enceladus', 'Sequoia', 'Helmi/Wukong', 'Helmi/Wukong', 'Sagittarius', 'in situ', 'Helmi/Wukong', 'Cetus', 'Cetus', 'Sagittarius', 'Sequoia / Arjuna / I\'itoi', 'Cetus', 'Sequoia / Arjuna / I\'itoi']
+    t['host'] = ['Sagittarius', 'Sagittarius', 'none', 'Gaia-Sausage-Enceladus', 'Sagittarius', 'Sequoia / Arjuna / I\'itoi', 'Sequoia', '(Gaia-Sausage-Enceladus)', '(Gaia-Sausage-Enceladus)', 'Sequoia', 'Gaia Enceladus', 'Sequoia', 'Helmi / Wukong', 'Helmi / Wukong', 'Sagittarius', 'in situ / Helmi / Wukong', 'Helmi / Wukong', 'Cetus', 'Cetus', 'Sagittarius', 'Sequoia / Arjuna / I\'itoi', 'Cetus', 'Sequoia / Arjuna / I\'itoi']
     
     # progenitor
-    t['progenitor'] = [np.nan, np.nan, 'itself', 'NGC 5139', 'NGC 4590', np.nan, 'NGC 3201', 'itself', 'itself', np.nan, np.nan, np.nan, np.nan, 'NGC 5024', np.nan, 'NGC 5272', 'NGC 5024', 'NGC 5824', 'NGC 5824', np.nan, np.nan, np.nan, np.nan]
+    t['progenitor'] = [np.nan, np.nan, 'itself', 'NGC 5139', 'NGC 4590', np.nan, 'NGC 3201', '(Wukong / Helmi)', '(Wukong / Helmi)', np.nan, np.nan, np.nan, np.nan, 'NGC 5024', np.nan, 'NGC 5272', 'NGC 5024', 'NGC 5824', 'NGC 5824', np.nan, np.nan, np.nan, np.nan]
     
     # progenitor type
     t['type'] = ['DG'  if name in ['elqui', 'indus', 'jhelum'] else 'GC' for name in t['name']]

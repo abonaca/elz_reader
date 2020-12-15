@@ -92,6 +92,7 @@ def h3_giants():
     t['Lx'] = (t['Lx']*u.km/u.s*u.kpc).to(u.kpc**2/u.Myr)
     t['Ly'] = (t['Ly']*u.km/u.s*u.kpc).to(u.kpc**2/u.Myr)
     t['Lz'] = (t['Lz']*u.km/u.s*u.kpc).to(u.kpc**2/u.Myr)
+    t['Lperp'] = np.sqrt(t['Lx']**2 + t['Ly']**2)
     t['E_tot_pot1'] = (t['E_tot_pot1']*u.km**2*u.s**-2).to(u.kpc**2*u.Myr**-2)
     
     t.write('../data/rcat_giants.fits', overwrite=True)
@@ -746,6 +747,26 @@ def phase_space_h3():
     #plt.savefig('../plots/phase_space_progenitors.png')
 
 
+def cetus():
+    """"""
+    giants = Table.read('../data/rcat_giants.fits')
+    cetus_mask = (giants['Ly']>0.7e3*u.kpc*u.km/u.s) & (giants['Lx']>2e3*u.kpc*u.km/u.s) & (giants['FeH']<-1.5) & (giants['Lz']<-1.4e3*u.kpc*u.km/u.s) & (giants['Lz']>-3.4e3*u.kpc*u.km/u.s) & (giants['E_tot_pot1']>-1e5*u.km**2*u.s**-2) & (giants['E_tot_pot1']<-0.6e5*u.km**2*u.s**-2) & (giants['R_gal']>20) & (giants['eccen_pot1']<0.5) & (giants['RA']<150)
+    
+    print(giants['Lz'])
+    print(np.sum(cetus_mask))
+    
+    plt.close()
+    plt.figure()
+    
+    plt.plot(giants['Lz'], giants['E_tot_pot1'], 'k.', ms=1)
+    plt.plot(giants['Lz'][cetus_mask], giants['E_tot_pot1'][cetus_mask], 'ro')
+    
+    plt.xlim(-5,5)
+    plt.ylim(-0.18, -0.03)
+    
+    plt.tight_layout()
+    
+
 def origin_kde():
     """Save smooth distributions for in-situ and ex-situ components"""
     
@@ -829,7 +850,7 @@ def progenitors_kde():
     print(np.array(np.unique(th['Substructure_ID'])))
     
     prog_ids = ['GSE', 'HS', 'Iitoi', 'Sequo', 'Arjun', 'Sgr', 'Thamn', 'Wuk']
-    labels = ['gse', 'helmi', 'iitoi', 'sequoia', 'arjuna', 'sgr', 'thamnos', 'wukong']
+    labels = ['gse', 'helmi', 'iitoi', 'sequoia', 'arjuna', 'sgr', 'thamnos', 'wukong', 'cetus']
     
     cx = ['Lz', 'Lz', 'Lz', 'Lx']
     cy = ['E_tot_pot1', 'Lperp', 'Ly', 'Ly']
@@ -868,9 +889,14 @@ def progenitors_kde():
     plt.close()
     fig, ax = plt.subplots(nrow, ncol, figsize=(ncol*da, nrow*da), sharex='row', sharey='row')
     
-    for i in range(ncol):
-        ind = th['Substructure_ID']==prog_ids[i]
-        t_ = th[ind]
+    for i in range(ncol-1,ncol):
+        if labels[i]=='cetus':
+            giants = Table.read('../data/rcat_giants.fits')
+            ind = (giants['Ly']>0.7e3*u.kpc*u.km/u.s) & (giants['Lx']>2e3*u.kpc*u.km/u.s) & (giants['FeH']<-1.5) & (giants['Lz']<-1.4e3*u.kpc*u.km/u.s) & (giants['Lz']>-3.4e3*u.kpc*u.km/u.s) & (giants['E_tot_pot1']>-1e5*u.km**2*u.s**-2) &   (giants['E_tot_pot1']<-0.6e5*u.km**2*u.s**-2) & (giants['R_gal']>20) & (giants['eccen_pot1']<0.5) & (giants['RA']<150)
+            t_ = giants[ind]
+        else:
+            ind = th['Substructure_ID']==prog_ids[i]
+            t_ = th[ind]
         Z = np.zeros_like(X)
         
         for j in range(nrow):
