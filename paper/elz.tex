@@ -55,9 +55,9 @@
 \begin{abstract}\noindent % trust me
 Most stellar streams in the Milky Way lack a discernible progenitor.
 With the improvement in the precision of proper motions provided by {\it Gaia} EDR3, we show that the orbits of 23 Galactic stellar streams are highly clustered in orbital phase space.
-Based on their energies and angular momenta, most streams in our sample can plausibly be associated with a (disrupted) dwarf galaxy host that brought them into the Milky Way.
+Based on their energies and angular momenta, most streams in our sample can plausibly be associated with a specific (disrupted) dwarf galaxy host that brought them into the Milky Way.
 For eight streams we also identify likely globular cluster progenitors (four of these associations are reported here for the first time).
-Surprisingly, some of these stream progenitors are displaced from their tidal debris by a few to tens of degrees.
+Some of these stream progenitors are surprisingly far, displaced from their tidal debris by a few to tens of degrees.
 We identify stellar streams that appear spatially distinct, but whose similar orbits indicate they likely originate from the same progenitor.
 If confirmed as physical discontinuities, they will provide strong constraints on the mass-loss rate from the progenitor, and possibly on regions of chaotic dispersal in the Galaxy.
 The nearly universal ex-situ origin of existing stellar streams makes them valuable tracers of galaxy mergers and dynamical friction.
@@ -93,18 +93,20 @@ Galaxy:~kinematics~and~dynamics
 % - been hard for streams bc most stars faint, couldn't do good orbits
 % - but then edr3 happened
 % - present here elz for streams
-Stellar streams hold the promise of delivering fundamental insights about the Galaxy and the nature of dark matter. 
-Due to their cold kinematics, even subtle gravitational perturbations will leave a prominent observational signature (e.g., gaps due to encounters with dark matter subhalos, fans due to encounters with the bar) \citep[e.g.,][]{bonaca2019a}.
-A remarkable and unexpected discovery over the past few years is that almost every detailed study of a stellar stream has revealed a wide variety of complex morphologies, large velocity dispersions, and/or widths incommensurate with simple models \citep[e.g.,][]{bonaca2019a, bonaca2019b,  li2020,bonaca2020b,malhan2019b}. 
+Stellar streams hold the promise of delivering fundamental insights about the Galaxy and the nature of dark matter.
+Due to their cold kinematics, even subtle gravitational perturbations will leave a prominent observational signature \citep[e.g., gaps due to encounters with dark matter subhalos, fans due to encounters with the bar,][]{johnston2002, pearson2017, bonaca2019a}.
+A remarkable and unexpected discovery over the past few years is that almost every detailed study of a stellar stream has revealed a wide variety of complex morphologies, large velocity dispersions, and/or widths incommensurate with dynamically unperturbed models \citep[e.g.,][]{pwb, bonaca2019b, bonaca2020a, li2020, gialluca2020}.
 
 A key missing piece of context in our modeling of streams is knowledge of their origins. 
-We have thus far been unable to answer some of the most basic of questions: were most streams born in-situ, or did they enter the Milky Way during mergers with dwarf galaxies?  Which streams originate from disrupting globular clusters, and which from dissolving dwarf galaxies?
+We have thus far been unable to answer some of the most basic of questions: were the stream progenitors born in situ, or did they enter the Milky Way during mergers with dwarf galaxies?
+Which streams originate from disrupting globular clusters, and which from dissolving dwarf galaxies?
 Understanding the origin of streams is critical to fulfilling their promise as probes of fundamental physics and the nature of the Galaxy.
-For instance, the velocity structure of a stream born in the Milky Way will be markedly different from that of a stream accreted after several orbits around a dwarf galaxy. 
-Properties of the progenitor dwarf galaxy, including its mass and density profile, will also leave imprints on stream velocities \citep[][]{malhan2020}. 
-Other aspects of the dwarf host (e.g., its accretion redshift) can help bracket for how long the stream must be orbiting the Milky Way, and thus constrain important parameters such as the expected number of subhalo encounters.
+% For instance, the velocity structure of a stream born in the Milky Way will be markedly different from that of a stream accreted after several orbits around a dwarf galaxy. 
+% Properties of the progenitor dwarf galaxy, including its mass and density profile, will also leave imprints on stream velocities \citep[][]{malhan2020}. 
+For instance, properties of the progenitor dwarf galaxy, including its mass and density profile, will leave imprints on stream structure and velocity dispersion \citep[][]{carlberg2018, malhan2020}.
+Other aspects of the dwarf host (e.g., its accretion redshift) can help bracket for how long the stream must be orbiting the Milky Way, and thus constrain important parameters such as the expected number of subhalo encounters \citep[e.g.,][]{erkal2016}.
 
-In this paper we use stream proper motions from {\it Gaia} and radial velocities to derive orbits, including angular momenta and energies.  
+In this paper we use stream proper motions from \gaia\ and ground-based radial velocities to derive orbits, including angular momenta and energies.
 This information, along with metallicities where available, is used to associate 23 stellar streams with disrupted dwarf galaxies and/or known globular clusters.
 
 %While a succession of \gaia-aided studies has tagged virtually every halo globular cluster and star to a distinct dwarf merger \citep[e.g.,][]{massari19,naidu2020}, the genealogy of streams is still elusive.
@@ -113,38 +115,26 @@ This information, along with metallicities where available, is used to associate
 %With these proper motions we can finally compute stream integrals of motion as has been done for globular clusters and stars to identify clustered objects that arrived in the Milky Way together.
 %Here we present integrals of motion (energy, angular momenta) for 23 Milky Way streams (\S\ref{sec:streamorbits},\ref{sec:phasespace}), identify families of streams with common origins, associate them with disrupted dwarf galaxies or known globular clusters (\S\ref{sec:hosts}), and discuss the implications of our constructed stream ancestry tree (\S\ref{sec:discussion}).
 
-% Hypotheses:
-% \begin{itemize}
-% \item{We can associate streams with the Milky Way progenitor galaxies.}
-% \item{Streams are clumped at the center of the progenitor with which they were accreted. Streams were dissolved because they experienced stronger tidal field than clusters stripped out at higher energies (which is why they remain bound until today). This explains why streams are clumpy in the phase-space, while globular clusters are not.}
-% \item{Strength of Milky Way's tidal field at this location equals the gravitational pull of the progenitor, which is why everything fell apart here. Therefore, we can read off the mass of the progenitor from this location, and compare that to the neural net estimates.}
-% \item{The span in angular momentum (and energy?) of clusters and streams is set by dynamical friction the progenitor experienced, which provides another way to estimate the mass of the progenitor galaxy.}
-% \item{The energy of the progenitor's center (stream clump) maps to the accretion redshift.}
-% \item{A massive globular cluster close to a stream clump was likely this progenitor's nuclear star cluster.}
-% \item{Given our better understanding of the trail a galaxy leaves in the phase space, we can also update globular cluster and stream associations previously reported. Based on that, it seems like we have another retrograde progenitor in addition to Sequoia!}
-% \item{Based on their proximity in the phase space, at least some streams considered so far as individual objects, may in fact be different parts of the same structure.}
-% \end{itemize}
-% 
-% Puzzles / spin-offs:
-% \begin{itemize}
-% \item{Why are both prograde and retrograde progenitors leaving trails like \textbackslash \textbackslash\ instead of \textbackslash\ /?}
-% \item{It seems that there are some gaps in the phase space, both in the distribution of streams and clusters, and H3 stars. Are these just well-separated, distinct progenitors?}
-% \item{Taking uncertainties into account, are the stream clumps actually distinct? (How strongly) Can we rule out a uniform distribution?}
-% \item{Can we use metallicity of streams and field stars in this analysis? Do we expect it to follow the globular cluster trail?}
-% \item{How are EMOSAICS clusters distributed in the phase space?}
-% \end{itemize}
 
 \section{Stream Orbits}
 \label{sec:streamorbits}
-In this work we use stream orbits derived by \citet{bk2021}, and in this section provide a brief overview of their fitting procedure.
-Positions and velocities of stream stars trace the orbit of their progenitor \citep[e.g.,][]{kuepper2010}.
+More than 60 long and thin stellar streams have been discovered in the Milky Way \citep[see][for an up-to-date catalog]{mateu2018}.
+Due to their small width, these are expected to be tidally dissolved globular clusters, although low-mass dwarf galaxy progenitors are also allowed (and can be distinguished with the presence of a metallicity spread).
+Only a handful of streams directly connect to a surviving globular cluster \citep[e.g.,][]{rockosi2002, grillmair2006b}.
+The vast majority of streams have no apparent progenitor within the stream and here we explore the origin of such streams.
+
+% In this work we use stream orbits derived by \citet{bk2021}, and in this section provide a brief overview of their fitting procedure.
+% Positions and velocities of stream stars trace the orbit of their progenitor \citep[e.g.,][]{kuepper2010}.
 Thanks to data released by the \gaia\ mission, 3D positions and two proper motion components are known for a sample of 23 streams without a discernible progenitor \citep{ibata2019, shipp2019, riley2020}.
-To improve upon published proper motions of Elqui, Phoenix, Turbio, Turranburra, and Willka Yaku, we selected blue horizontal branch stars along these streams in the \gaia\ EDR3 catalog and used them in orbit fitting.
+% To improve upon the most uncertain of the published stream proper motions, we selected blue horizontal branch stars along Elqui, Phoenix, Turbio, Turranburra, and Willka Yaku in the \gaia\ EDR3 catalog and used them in orbit fitting.
+\gaia\ DR2 proper motions detected in Elqui, Phoenix, Turbio, Turranburra, and Willka Yaku are significantly more uncertain than along other streams in our sample.
+For these streams we selected blue horizontal branch stars from the \gaia\ EDR3 catalog \citep{gaiaedr3} with a box in the \gaia\ color-magnitude diagram at the expected stream distance, and used their more precise proper motions in orbit fitting.
 Radial velocities have been measured for five of these streams, thereby providing full 6D phase-space information \citep{caldwell2020, li2020, bonaca2020b}.
 
 %minor: the omega-cen stream has RVs too from the Ibata Science paper page 24 here https://arxiv.org/pdf/1902.09544.pdf
 
-Assuming a static, axisymmetric model of the Milky Way \citep[default \texttt{MilkyWayPotential}]{gala}, \citet{bk2021} used these stream data to constrain their orbits.
+In this work we use stream orbits derived by \citet{bk2021}, and provide here a brief overview of their fitting procedure.
+Assuming a static, axisymmetric model of the Milky Way \citep[v1.2 \texttt{MilkyWayPotential}]{gala}, \citet{bk2021} used the available stream data to constrain their orbits.
 They sampled the stream orbital parameters using a Monte Carlo Markov Chain ensemble sampler and provide direct samples from the posterior to account for correlations between parameters.
 In this work we characterize the orbit by its total energy, $E_{\rm tot}$, and the $z$ component of the angular momentum, $L_z$ (perpendicular to the Galactic disk)---both conserved quantities in the adopted gravitational potential.
 We further employ the orthogonal component of the angular momentum $L_\perp \equiv \sqrt{L_x^2 + L_y^2}$, which is not fully conserved in an axisymmetric potential, but is still a useful quantity for orbital characterization \citep{helmi1999}.
@@ -174,11 +164,12 @@ As a comparison, we include the phase-space distribution of giant stars from the
 
 Interestingly, at the same amplitude of the angular momentum, $|L_z|$, prograde streams have higher energies than retrograde streams.
 As spatial-overdensity searches are insensitive to the orbital direction, and proper-motion based searches are more sensitive to retrograde orbits, it is unlikely that the lack of retrograde streams at high energies is due to observational biases.
-If confirmed as a reflection of the intrinsic orbital distribution by more complete stream samples, this asymmetry would suggest that objects on retrograde orbits are more resilient to tidal disruption, consistent with findings from numerical simulations \citep[e.g.,][]{find}.
+If confirmed as a reflection of the intrinsic orbital distribution by more complete stream samples, this asymmetry would suggest that objects on retrograde orbits are more resilient to tidal disruption \citep[e.g.,][]{velazquez1999}, or asymmetric satellite inflows onto the Milky Way \citep[e.g.,][]{herbert-fort2008}.
 
 The two most striking features of streams in phase space are: (1) the significant degree of clustering, and (2) the lack of streams on radial orbits.
 In contrast, the major feature in stars and globular clusters is the large population of objects on radial orbits with $L_z\approx0$, identified as debris from the Gaia Enceladus merger \citep[e.g.,][]{belokurov2018, helmi2018, naidu2020}.
-Only two stellar streams are found on radial orbits, Ophiuchus and Elqui, and because of the large difference in their orbital energies they are likely unrelated.
+Only two stellar streams are found on radial orbits, Ophiuchus and Elqui.
+% , and because of the large difference in their orbital energies they are likely unrelated.
 Unlike stars and globular clusters, the majority of the streams are highly clustered in two groups, a retrograde group containing 7 streams, and a prograde group comprised of 14 streams.
 
 Most of the retrograde streams are found in a narrow locus from $(E_{\rm tot}, L_z)\approx(-0.08\,\ue,\allowbreak 4\,\ul)$ to $(E_{\rm tot}, L_z)\approx(-0.11\,\ue,\allowbreak 1\,\ul)$, which includes Leiptr, Gj\" oll, GD-1, Phlegethon, Ylgr, and Wambelong.
@@ -189,11 +180,12 @@ Within this group, Wambelong, Leiptr, and Gj\" oll are highly aligned, defining 
 
 The prograde group of streams appears to separate into three distinct regions: (1) Triangulum and Willka Yaku at $L_z\approx-3\,\ul$, (2) Slidr, ATLAS, Aliqa Uma, Turbio, Turraburra, and Fjorm at $L_z\approx-2\,\ul$, and (3) Jhelum, Sylgr, Ravi, Indus, Phoenix, and Sv\" oll at $L_z\approx-1\,\ul$.
 The in-plane angular momentum decreases with decreasing $|L_z|$ and is approximately uniform within each small cluster.
-The median energy of these sub-groups also decreases with decreasing $|L_z|$, however, so does the dispersion, such that the most radial clump spans a large range in energy levels.
+The median energy of these sub-groups also decreases with decreasing $|L_z|$, however, so does the dispersion, such that the most radial clump spans the largest range in energy levels.
 Clustering of the prograde streams  provides tantalizing evidence of a common origin among stellar streams, which we explore further in \S\,\ref{sec:hosts}.
 
 Several streams are also very closely associated with a globular cluster in phase space, suggesting a possible physical connection.
-These clusters appear close to streams in energy and both components of the angular momentum, and are outlined in cyan in the right panel of Figure~\ref{fig:elz}.
+Clusters that appear close to streams in energy, both components of the angular momentum, and also distance and metallicity are outlined in cyan in the right panel of Figure~\ref{fig:elz}.
+% These clusters appear close to streams in energy and both components of the angular momentum, and are outlined in cyan in the right panel of Figure~\ref{fig:elz}.
 The identified cluster--stream groups include: Omega Cen--Fimbulthul; NGC~3201--Gj\" oll; NGC~4590--Fjorm; NGC~5024--Sylgr and Ravi; NGC~5272--Sv\" ol; and NGC~5824--Triangulum.
 We explore these connections further in \S\,\ref{sec:progenitors}.
 
@@ -213,10 +205,11 @@ Stellar streams in our sample (stars) occupy areas of phase space where stars ac
 \citet{naidu2020} performed a detailed chemo-dynamical decomposition of stars observed with the H3 Spectroscopic Survey to identify structures in the Galactic halo.
 In Figure~\ref{fig:hosts} we compare the locations of streams in $E-L_Z$ space to the stars in the H3 data.  
 The left panel compares the stream locations to the stars inferred to be born within the Milky Way (in-situ; dashed line), while the right panel compares streams to the populations of stars inferred to have an accretion origin.  
-In the right panel we use contours of different colors to mark the phase-space distribution of distinct structures identified in Naidu et al., most of which likely constitute distinct accretion events.
-Specifically, we encompass the region where the average density for that component is higher than 20\,\% of its maximum in the space of energy and angular momentum.
+In the right panel we use contours of different colors to mark the phase-space distribution of distinct structures identified in \citet{naidu2020}, most of which likely constitute distinct accretion events.
+Specifically, we performed kernel density estimation using Gaussian kernels with Scott's bandwidth and encompass the region where the average density for a given component is higher than 20\,\% of its maximum in the space of energy and angular momentum.
+% Specifically, we encompass the region where the average density for that component is higher than 20\,\% of its maximum in the space of energy and angular momentum.
 %The streams are overplotted as stars outlined in black.
-Most of the streams have energies and angular momenta consistent with the distribution of one of the known halo substructures.  
+Most of the streams have energies and angular momenta consistent with the distribution of one of the known halo substructures.
 
 
 The high-energy group of retrograde streams is well aligned with debris from Sequoia, I'itoi, and Arjuna.
@@ -236,11 +229,14 @@ We, therefore, associate Gaia Enceladus as the host galaxy of the Fimbulthul ste
 % {\color{red} it's also worth reminding the reader here that the contours are only the inner 20\% - at what contour level is Fim associated with Thamnos?}
 
 Ophiuchus is on a low-energy radial orbit and we therefore associate it with Gaia Enceladus.
-Although orbits of some in-situ stars have orbits similar to Ophiuchus, the low metallicity of $\feh=-1.95$ \citep{sesar2015} disfavors Ophiuchus as an in-situ stellar stream.
-Immediately upon its discovery, Ophiuchus was noted for its short extent and a low-density envelope \citep{bernard2015, sesar2015}.
-Sources of perturbation present in the Milky Way, ranging from the Galactic bar \citep{price-whelan2016} to the Sagittarius dwarf galaxy \citep{lane2020}, have been proposed to explain the morphology of Ophiuchus.
-More recently, \citet{carlberg2019} showed that streams originating from a host galaxy outside the Milky Way can develop similar low-density features.
-Numerical simulations that take into account Ophiuchus' likely evolution within a host galaxy undergoing a radial merger might resolve the origin of its mysterious morphology.
+Although some in-situ stars have orbits similar to Ophiuchus, the low metallicity of $\feh=-1.95$ \citep{sesar2015} disfavors Ophiuchus as an in-situ stellar stream.
+Ophiuchus is a short stream surrounded by a low-density envelope \citep{bernard2014, sesar2015}, which may be further evidence of an extragalactic origin.
+A globular cluster while disrupting the Milky Way would have formed the short, dense part of the stream, while material stripped while the cluster was still within a dwarf galaxy host would have spread out at lower densities once the host galaxy dissolved \citep{carlberg2018, malhan2020}.
+
+% This hypothesis can be tested in detail by simulating the formation of Ophiuchus stream starting from an orbit within the Gaia Enceladus progenitor.
+% Sources of perturbation present in the Milky Way, ranging from the Galactic bar \citep{price-whelan2016} to the Sagittarius dwarf galaxy \citep{lane2020}, have been proposed to explain the morphology of Ophiuchus.
+% \citet{carlberg2018} recently showed that streams originating from a host galaxy outside the Milky Way can develop similar low-density features.
+% Numerical simulations that take into account Ophiuchus' likely evolution within a host galaxy undergoing a radial merger might resolve the origin of its mysterious morphology.
 
 Elqui is on a high-energy radial orbit and appears unassociated with any of the Milky Way progenitors.
 \citet{ji2020} found significant metallicity spread in Elqui, a telltale signature of a dwarf galaxy origin with an extended star-formation history.
@@ -257,6 +253,23 @@ Alternatively, Jhelum and Indus might originate from a satellite of a more massi
 Ravi, Sylgr and Phoenix are thin streams with orbits similar to Indus.
 With little metallicity variation within either Sylgr or Phoenix \citep{ibata2019, wan2020}, these streams likely originate from globular clusters hosted by the progenitor of Indus and Jhelum.
 
+\begin{deluxetable*}{l c c c c}
+\tablehead{
+Name & Host Galaxy & Progenitor & Associated with & Type
+}
+\decimals
+\startdata
+\input{stream_origin.tex}
+\enddata
+\caption{
+The original progenitors and host galaxies of stellar streams in the Milky Way.
+Tentative host galaxy candidates are placed in parentheses.
+The last column determines the progenitor as globular cluster (GC) or dwarf galaxy (DG).
+}
+\label{table}
+\end{deluxetable*}
+
+
 Sv\" ol is the final stream in this group of low and prograde angular momentum, found at substantially lower energy from the rest of the group.
 Based on its energy and angular momentum, Sv\" ol may be associated with Helmi, Wukong, or the in-situ component of the stellar halo.
 Interestingly, \citet{ibata2019} identified a star with Sv\" ol kinematics, but a metallicity of $\feh=-1.08$ and marked it as a probable contaminant.
@@ -266,12 +279,13 @@ If this star is confirmed to be associated with Sv\" ol and is determined to hav
 
 A large group of streams including Aliqa Uma, ATLAS, Fj\" orm, Slidr, Turbio, and Turranburra forms a tight sequence at intermediate prograde angular momenta (centered on $L_Z\sim-2$ kpc$^2$ Mpc$^{-1}$).
 The group has orbits consistent with the low-energy debris from the Sagittarius dwarf galaxy.
-All of these streams are thin and no metallicity spread have been detected, which suggests they were originally globular clusters associated with Sagittarius that were disrupted by the Milky Way tidal force.
+All of these streams are thin and no metallicity spreads have been detected, which suggests they were originally globular clusters associated with Sagittarius that were disrupted by the Milky Way tidal force.
 Several streams in this group are very close in the phase space, which suggests that some of them might be part of the same stream, despite appearing spatially distinct in the sky.
 In fact, \citet{li2020} found that ATLAS and Aliqa Uma have a radial velocity gradient consistent with the same orbit.
 Formation within the dynamic environment of Sagittarius merging with the Milky Way could have opened a large gap in the original stream \citep{bonaca2020b, deboer2020}.
-These streams, if confirmed as being associated with Sagittarius, would increase the already large number of globular clusters associated with this dwarf galaxy \citep[$5-7$; see][]{Johnson2020}.  
-This would in turn suggest a fairly massive pre-infall halo mass of Sagittarius,  (as a consequence of the empirical correlation between the number of globular clusters and total halo mass \cite{Harris, Burkert, etc.}).
+
+% A large population of globular clusters would suggest a fairly massive pre-infall halo mass of Sagittarius, although galaxies of this luminosity show a significant spread in specific frequencies of globular cluster \citep{harris2013}.
+% This would in turn suggest a fairly massive pre-infall halo mass of Sagittarius, as a consequence of the empirical correlation between the number of globular clusters and total halo mass \cite{harris2013}.
 %laporte model 6e10 msun 
 
 \begin{figure*}
@@ -280,7 +294,9 @@ This would in turn suggest a fairly massive pre-infall halo mass of Sagittarius,
 \end{center}
 \caption{
 Sky positions of stellar streams (circles) and globular clusters (crosses) that have similar orbital energies and angular momenta (see Figure~\ref{fig:elz}), shown in the equatorial coordinates in the top and galactic at the bottom.
-Despite being spatially separated, these clusters are likely stream progenitors because their orbits (lines) connect them to the streams.
+Thick lines are the best-fit orbits of globular clusters, whereas thin lines sample observational uncertainties in the clusters' 6D positions.
+Despite being spatially separated, these clusters are likely stream progenitors because their orbits connect them to the streams.
+% Several of the orbits cross the Galactic plane (latitude $b\approx0$, bottom panel), an area typically excluded in searches for halo streams.
 }
 \label{fig:sky}
 \end{figure*}
@@ -295,37 +311,22 @@ These results imply that the original host galaxy for a large fraction of stella
 Tentative associations of streams and their host galaxies are listed in Table~\ref{table}.
 
 
-\begin{deluxetable}{l c c c c}
-\tablehead{
-Name & Host Galaxy & Progenitor & Type & \feh
-}
-\decimals
-\startdata
-\input{stream_origin.tex}
-\enddata
-\caption{
-The original progenitors and host galaxies of stellar streams in the Milky Way.
-Tentative host galaxies are placed in parentheses.
-}
-\label{table}
-\end{deluxetable}
-
-
 \subsection{Association with globular clusters}
 \label{sec:progenitors}
 In this section we explore whether globular cluster progenitors of stellar streams can be identified based on their proximity in the phase space.
 Inspection of the right panel of Figure~\ref{fig:elz} reveals several cases in which a globular cluster is very close in $E-L_Z-L_\perp$ space to one or more stellar streams.
-Figure~\ref{fig:sky} shows the sky positions of the six most compelling associations, with equatorial coordinates in the top panel and Galactic in the bottom panel.
+Figure~\ref{fig:sky} shows the sky positions of the six most compelling associations (close also in distance and metallicity), with equatorial coordinates in the top panel and Galactic in the bottom panel.
 In this figure the globular clusters are shown as crosses and stream stars as circles (associated objects have the same color).
-Starting with the 6D positions from \citet{baumgardt2019} we integrated orbits of these clusters and in all cases found that they clearly connect to stellar streams (shown as lines of matching colors in Figure~\ref{fig:sky}).
-The connections between Fimbulthul and NGC~5139 (Omega Cen), and Gj\" oll and NGC~3201 have been previously identified \citep[respectively]{ibata2019b, hansen2020}.
+Starting with the best-fit 6D positions from \citet{baumgardt2019} we integrated orbits of these clusters and in all cases found that they clearly connect to stellar streams (shown as thick lines of matching colors in Figure~\ref{fig:sky}).
+Thin lines show a 100 samples from the observational uncertainties.
+The connections between NGC~5139 (Omega Cen) and Fimbulthul \citep{ibata2019b}, NGC 3201 and Gj\" oll \citep{hansen2020}, and NGC~4590 (M~68) and Fj\" orm \citep{palau2019} have been previously identified.
 These results suggest that associations between a globular cluster and a stellar stream, where the stream does not connect directly to the cluster, are common in the Milky Way (eight out of 23 streams).
 
 These associations challenge the established picture in which tidal tails are developed symmetrically around globular clusters through steady mass loss \citep[e.g.,][]{kuepper2010}.
 In several cases, the stream and the cluster are on opposite sides of the Galactic disk (bottom panel).
 The high contamination rate and extinction at low Galactic latitudes may be preventing a complete mapping of Gj\" oll, Turbio and Ravi.
 Furthermore, parts of stellar streams might be missing due to observational limitations, such as footprints of photometric surveys in the case of Ravi, Triangulum, and Turbio, and the varying degree to which streams stand out against the bulk of the Milky Way stars in proper motions (for Fimbulthul, Fj\" orm, Gj\" oll, Sv\" ol, and Sylgr).
-Dedicated searches along the orbital paths shown in Figure~\ref{fig:sky} with more precise \gaia\ EDR3 proper motions \citep{edr3} and extended photometric catalogs \citep{decals} should determine whether the stream gaps along these clusters' orbits are physical or a selection effect.
+Dedicated searches along the orbital paths shown in Figure~\ref{fig:sky} with more precise \gaia\ EDR3 proper motions \citep{gaiaedr3} and extended photometric catalogs \citep{dey2019} should determine whether the stream gaps along these clusters' orbits are physical or a selection effect.
 
 Episodic mass loss from a globular cluster is a physical mechanism that can explain the uneven density along these clusters' orbits.
 These episodes can be induced in pericentric passages \citep{general_stripping_ref}, disk crossing \citep{dehnen2004}, encounters with other structures \citep{?}, core collapse \citep{?}, or upon accretion onto the Milky Way \citep{?}.
@@ -366,6 +367,17 @@ For example, an elevated velocity dispersion has recently been reported for the 
 More generally, with the associations presented in this work it is now possible to construct stream models in a realistic, evolving environment because masses and accretion redshifts are known for host galaxies of most streams \citep{kruijssen2020}.
 Building this next generation of models is essential for disentangling features imparted by the stream's host galaxy from the potential signatures of dark-matter subhalos in the Milky Way.
 
+
+- association of gc streams w host galaxies could be a way to estimate their masses
+- relation well established, despite a larger spread at low masses
+- under the assumption that in a field galaxy these would be surviving -> means more massive
+- in particular, sgr
+- sequoia for follow-up to distinguish from iitoi, arjuna
+
+% * gc counts -> mass
+% - also mention sequoia
+% These streams, if confirmed as being associated with Sagittarius, would increase the already large number of globular clusters born in this dwarf galaxy \citep[$5-7$; see][]{Johnson2020}.
+% Galaxies of this luminosity show a significant spread in the specific frequency of globular clusters \citep{harris2013}, however, a larger population of globular clusters would suggest a fairly massive pre-infall halo mass of Sagittarius.
 
 
 
