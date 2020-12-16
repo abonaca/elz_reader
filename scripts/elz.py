@@ -171,6 +171,7 @@ def elz_h3_ly(streams=True):
     names = get_names()
     
     th = Table.read('../data/rcat_giants.fits')
+    print(len(th))
     
     # plotting
     cmap = mpl.cm.viridis
