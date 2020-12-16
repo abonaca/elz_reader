@@ -564,9 +564,19 @@ def lylx():
     plt.savefig('../plots/lylx_streams_dr3.png')
 
 
-def orbits_sky(T=1000):
+def orbits_sky(T=1000, clump='wukong'):
     """"""
     t = Table.read('../data/fit_summary_fiducial.fits')
+    
+    streams = dict()
+    streams['wukong'] = ['indus', 'jhelum', 'phoenix', 'ravi', 'sylgr']
+    streams['retrograde1'] = ['leiptr', 'gjoll', 'wambelong']
+    streams['retrograde2'] = ['gd1', 'phlegethon', 'ylgr']
+    streams['cetus'] = ['triangulum', 'turbio', 'willka_yaku']
+    streams['sagittarius'] = ['aliqa_uma', 'atlas', 'slidr', 'turranburra', 'fjorm']
+    
+    ind = np.array([True if x in streams[clump] else False for x in t['name']])
+    t = t[ind]
     N = len(t)
     
     dt = 0.1*u.Myr
@@ -603,21 +613,27 @@ def orbits_sky(T=1000):
         #plt.plot(orbiteq_fwd.ra.wrap_at(wangle).rad, orbiteq_fwd.dec.rad, 'o', ms=1, mew=0, color=mpl.cm.magma(color))
         #plt.plot(orbiteq_rr.ra.wrap_at(wangle).rad, orbiteq_rr.dec.rad, 'o', ms=1, mew=0, color=mpl.cm.magma(color))
         
-        plt.plot(orbitgal_fwd.l.wrap_at(wangle).rad, orbitgal_fwd.b.rad, 'o', ms=1, mew=0, color=mpl.cm.magma(color))
-        plt.plot(orbitgal_rr.l.wrap_at(wangle).rad, orbitgal_rr.b.rad, 'o', ms=1, mew=0, color=mpl.cm.magma(color))
+        #plt.plot(orbitgal_fwd.l.wrap_at(wangle).rad, orbitgal_fwd.b.rad, 'o', ms=1, mew=0, color=mpl.cm.magma(color))
+        #plt.plot(orbitgal_rr.l.wrap_at(wangle).rad, orbitgal_rr.b.rad, 'o', ms=1, mew=0, color=mpl.cm.magma(color))
+        
+        color = next(ax._get_lines.prop_cycler)['color']
+        plt.plot(orbitgal_fwd.l.wrap_at(wangle).rad, orbitgal_fwd.b.rad, 'o', ms=1, mew=0, color=color, label=t_['name'])
+        plt.plot(orbitgal_rr.l.wrap_at(wangle).rad, orbitgal_rr.b.rad, 'o', ms=1, mew=0, color=color, label='')
     
     
     plt.xlabel('l [deg]')
     plt.ylabel('b [deg]')
+    plt.legend(markerscale=10, handlelength=0.5, loc=1)
     
-    sm = plt.cm.ScalarMappable(cmap=plt.cm.magma, norm=plt.Normalize(vmin=0, vmax=6))
-    sm._A = []
-    cb = fig.colorbar(sm, ax=ax, pad=0.04, aspect=20)
-    cb.set_label('$L_\perp$ [kpc$^2$ Myr$^{-1}$]')
+    #sm = plt.cm.ScalarMappable(cmap=plt.cm.magma, norm=plt.Normalize(vmin=0, vmax=6))
+    #sm._A = []
+    #cb = fig.colorbar(sm, ax=ax, pad=0.04, aspect=20)
+    #cb.set_label('$L_\perp$ [kpc$^2$ Myr$^{-1}$]')
     
     
     plt.tight_layout()
-    plt.savefig('../plots/orbits_sky_{:04.0f}.png'.format(T_fwd.value))
+    plt.savefig('../plots/orbits_sky_{:s}.png'.format(clump))
+    #plt.savefig('../plots/orbits_sky_{:04.0f}.png'.format(T_fwd.value))
 
 
 def phase_space():
@@ -1071,3 +1087,56 @@ def stream_planes():
     
     plt.tight_layout()
     plt.savefig('../plots/retrograde_streams.png')
+
+
+def wambelong():
+    """"""
+    th = Table.read('../data/rcat_giants.fits')
+    
+    ind = (th['Lz']>1.2*u.kpc**2*u.Myr**-1) & (th['Lz']<1.8*u.kpc**2*u.Myr**-1) & (th['E_tot_pot1']>-0.115*u.kpc**2*u.Myr**-2) & (th['E_tot_pot1']<-0.1*u.kpc**2*u.Myr**-2)
+    
+    plt.close()
+    plt.figure(figsize=(9.5,9))
+    
+    plt.plot(th['Lz'], th['E_tot_pot1'], 'k.', ms=3)
+    plt.plot(th['Lz'][ind], th['E_tot_pot1'][ind], 'r.', ms=5)
+    
+    color = 'r'
+    plt.axvline(1.2, color=color)
+    plt.axvline(1.8, color=color)
+    plt.axhline(-0.1, color=color)
+    plt.axhline(-0.115, color=color)
+    
+    plt.xlim(-4.5,4.5)
+    plt.ylim(-0.18, -0.03)
+    
+    plt.xlabel('$L_z$ [kpc$^2$ Myr$^{-1}$]')
+    plt.ylabel('$E_{tot}$ [kpc$^2$ Myr$^{-2}$]')
+    
+    plt.tight_layout()
+    plt.savefig('../plots/wambelong_elz.png')
+
+def wambelong_mdf():
+    """"""
+    th = Table.read('../data/rcat_giants.fits')
+    
+    ind = (th['Lz']>1.2*u.kpc**2*u.Myr**-1) & (th['Lz']<1.8*u.kpc**2*u.Myr**-1) & (th['E_tot_pot1']>-0.115*u.kpc**2*u.Myr**-2) & (th['E_tot_pot1']<-0.1*u.kpc**2*u.Myr**-2)
+    ind_rs = (th['Lz']>2.*u.kpc**2*u.Myr**-1)
+    
+    feh_bins = np.linspace(-2.5,-0.5,30)
+    
+    plt.close()
+    plt.figure(figsize=(8,7))
+    
+    plt.hist(th['FeH'], bins=feh_bins, histtype='stepfilled', density=True, color='k', alpha=0.3, label='H3 giants')
+    plt.hist(th['FeH'][ind_rs], bins=feh_bins, histtype='step', density=True, color='k', lw=2, label='$L_z$ > 2 kpc$^2$ Myr$^{-1}$')
+    plt.hist(th['FeH'][ind], bins=feh_bins, histtype='step', density=True, color='r', lw=2, label='Wambelong selection')
+    
+    plt.legend(loc=2)
+    plt.xlabel('[Fe/H]')
+    plt.ylabel('Density')
+    
+    plt.tight_layout()
+    plt.savefig('../plots/wambelong_mdf.png')
+
+    
