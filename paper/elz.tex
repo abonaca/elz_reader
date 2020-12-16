@@ -67,6 +67,9 @@
 \author[0000-0002-8804-0212]{J.~M.~Diederik~Kruijssen}
 \affiliation{Astronomisches Rechen-Institut, Zentrum f\" ur Astronomie der Universit\" at Heidelberg, M\" onchhofstra\ss e 12-14, D-69120 Heidelberg, Germany}
 
+\author[0000-0002-5629-8876]{G.~C.~Myeong}
+\affil{Center for Astrophysics | Harvard \& Smithsonian, 60 Garden Street, Cambridge, MA 02138, USA}
+
 \author[0000-0003-2573-9832]{Josh~Speagle}
 \affiliation{University of Toronto, Department of Statistical Sciences, Toronto, M5S 3G3, Canada}
 \affiliation{University of Toronto, David A. Dunlap Department of Astronomy \& Astrophysics, Toronto, M5S 3H4, Canada}
@@ -95,13 +98,13 @@ The nearly universal ex-situ origin of existing stellar streams makes them valua
 Their phase-space clustering can be leveraged to construct a precise global map of dark matter in the Milky Way, while their structure may hold clues to the small-scale structure of dark matter in their original host galaxies.
 \end{abstract}
 
-\keywords{%
-stars:~kinematics~and~dynamics
-  ---
-Galaxy:~halo
-  ---
-Galaxy:~kinematics~and~dynamics
-}
+% \keywords{%
+% stars:~kinematics~and~dynamics
+%   ---
+% Galaxy:~halo
+%   ---
+% Galaxy:~kinematics~and~dynamics
+% }
 
 \section{Introduction}
 \label{sec:intro}
@@ -119,7 +122,7 @@ Other aspects of the dwarf host (e.g., its accretion redshift) can help bracket 
 
 In this paper, we use stream proper motions from \gaia\ and ground-based radial velocities to derive orbits, including angular momenta and energies.
 This information, along with metallicities where available, is used to associate 23 stellar streams with disrupted dwarf galaxies and/or known globular clusters.
-
+Throughout the paper, we use the term ``stream progenitor'' for an object whose tidal disruption formed that stream and the term ``host galaxy'' for a galaxy in which the stream progenitor was born.
 
 \section{Stream Orbits}
 \label{sec:streamorbits}
@@ -345,59 +348,43 @@ We used the proximity of stellar streams in phase space to identify streams that
 Finally, we identified six globular clusters as progenitors of eight stellar streams (the orbits of NGC~5024 and NGC~5824 each passes through two streams).
 The host galaxies and individual stream progenitors are summarized in Table~\ref{table}.
 
-- association of gc streams w host galaxies could be a way to estimate their masses
-- relation well established, despite a larger spread at low masses
-- under the assumption that in a field galaxy these would be surviving -> means more massive
-- in particular, sgr
-- sequoia for follow-up to distinguish from iitoi, arjuna
+The extragalactic origin of stellar streams provides a new insight into low-mass galaxies.
+The progenitors of these streams are globular clusters that have until recently been been a part of their host galaxies' globular cluster system.
+This recently dissolved population might shed light on the origin of scatter in the relation between the globular cluster system and the galaxy mass for low-mass galaxies \citep[e.g.,][]{harris2013}.
+On the other hand, assuming that streams were formed only recently would suggest larger pre-infall halo masses of their host galaxies, many of which already have a sizeable population of globular clusters (e.g., $5-7$ in Sagittarius, \citealt{Johnson2020}; up to 6 in Sequoia, \citealt{myeong2019}).
+This is especially pertinent for the accretion of Sagittarius as its impact throughout the Milky Way strongly depends on its mass \citep{laporte2019}.
 
-Our discovery of globular cluster progenitors for several streams will improve the inference of the dark matter in the Milky Way.
-Uncertainties in the location and mass of the stream progenitor have often hindered the interpretation of stream gaps as signatures of dark-matter subhalo impacts \citep{banik2019}.
-However, when the progenitor is known it is possible to produce direct N-body models of the entire system that account for density variations naturally forming during the dissolution of a globular cluster \citep[e.g.,][]{kuepper2015}.
-Furthermore, streams and clusters connected by the same orbit span a much larger extent on the sky.
-\citet{bh2018} found that longer streams are more sensitive to global parameters of the gravitational potential and the slight orbital mismatches shown in Figure~\ref{fig:sky} already suggest that modifications to the gravitational potential are necessary.
-- timing, stream ages
-- rates of subhalo encounters (erkal)
-- clustering (sanderson)
-- dyn friction: discussion, shedding of streams from the progenitor
+Our findings have wide implications on stellar streams as tracers of dark matter.
+To list a few:
+(1) associating shorter streams into a single, longer structure increases their sensitivity to global properties of the gravitational potential \citep{bh2018};
+(2) high clustering of many stellar streams in the phase space can be directly used to constrain the gravitational potential \citep{sanderson2015, reino2020};
+(3) assuming that the retrograde streams represent a breadcrumb trail of satellites stripped in a single merger event, they depict dynamical friction in action \citep[e.g.,][]{chandrasekhar1942, white1978}, whose magnitude depends on the nature of dark matter \citep[e.g.,][]{lancaster2020};
+(4) a known stream progenitor allows the construction of direct N-body models that best capture the inherent structure of stellar streams \citep[e.g.,][]{kuepper2008, just2009} and improve their modeling in the Milky Way potential \citep{kuepper2015};
+(5) a known host galaxy provides the time of accretion onto the Milky Way \citep[e.g.,][]{kruijssen2020}, which allows for properly capturing a stream's early formation in its host galaxy \citep[e.g.,][]{carlberg2018, malhan2020} as well as subsequent evolution in the Milky Way that accurately accounts for perturbations from molecular clouds, spiral arms, and dark-matter subhalos \citep[e.g.,][]{erkal2016, banik2019}.
 
-- developing story
-- what observations most urgently needed:
-- vr for streams
-- metallicities for associations (svol, indus, jhelum, retrograde shards)
-- selection function (are streams actually missing on radial orbits, or just misclassified?)
-
+We close by proposing stream observations that will lead to the most efficient headway in these exciting new directions.
+To expand this study to the entire population of streams in the Milky Way, we need to measure proper motions of $\gtrsim40$ streams, many of which are distant and faint \citep[e.g.,][]{grillmair2009, grillmair2017}.
+As we approach the complete census, understanding the selection function of streams in the Galaxy will be crucial for interpreting the phase-space distribution of streams.
+For example, a selection function is needed to assess whether there is a genuine lack of streams on radial orbits \citep[as shell rather than stream morphologies are expected on such orbits,][]{hendel2015} or whether genuine radial streams are misclassified as dwarf galaxies \citep[that have anomalously large velocity dispersions and/or distance gradients,][]{kuepper2017}.
+Precise radial velocities, such as those provided by the H3 \citep{conroy2019} and S5 \citep{li2019} surveys, are needed to further constrain the streams' orbits.
+Metallicity and multi-element abundances are the ultimate tool in discovering the origin of stellar streams \citep[e.g.,][]{hansen2020}, with Sv\" ol, Indus, Jhelum, and the retrograde debris being the top priority.
 
 
-% Our findings indicate that the progenitor of a typical stellar stream was formed in a dwarf galaxy outside of the Milky Way.
-% After the host galaxy disrupts in the Milky Way, its stars, globular clusters and streams remain clustered on similar orbits.
-% \citet{sanderson2015} showed that the underlying gravitational potential can be constrained by maximizing the phase-space clustering of field stars.
-% As Figure~\ref{fig:elz} shows, streams from the same host galaxy are visibly more clustered than stars, opening an exciting possibility of recovering the gravitational potential significantly more precisely by maximizing the clustering of known stream associations.
-
-
+% - developing story
+% - what observations most urgently needed:
+% - orbits for more streams
+% - selection function (are streams actually missing on radial orbits, or just misclassified?)
+% - vr for streams
+% - metallicities for associations (svol, indus, jhelum, retrograde shards)
 
 
 
-% * gc counts -> mass
-% - also mention sequoia
-% These streams, if confirmed as being associated with Sagittarius, would increase the already large number of globular clusters born in this dwarf galaxy \citep[$5-7$; see][]{Johnson2020}.
-% Galaxies of this luminosity show a significant spread in the specific frequency of globular clusters \citep{harris2013}, however, a larger population of globular clusters would suggest a fairly massive pre-infall halo mass of Sagittarius.
-
-% A large population of globular clusters would suggest a fairly massive pre-infall halo mass of Sagittarius, although galaxies of this luminosity show a significant spread in specific frequencies of globular cluster \citep{harris2013}.
-% This would in turn suggest a fairly massive pre-infall halo mass of Sagittarius, as a consequence of the empirical correlation between the number of globular clusters and total halo mass \cite{harris2013}.
-%laporte model 6e10 msun 
-
-
-% Identifying the original host galaxies of stellar streams is a crucial step in our understanding of their dynamical history.
-% For example, an elevated velocity dispersion has recently been reported for the GD-1 stellar stream \citep{gialluca2020} and we can now recognize the early evolution in its host galaxy as a source of heating.
-% More generally, with the associations presented in this work it is now possible to construct stream models in a realistic, evolving environment because masses and accretion redshifts are known for host galaxies of most streams \citep{kruijssen2020}.
-% Building this next generation of models is essential for disentangling features imparted by the stream's host galaxy from the potential signatures of dark-matter subhalos in the Milky Way.
 
 
 
 
 \vspace{0.5cm}
-It is a pleasure to thank 
+% It is a pleasure to thank 
 J.M.D.K. gratefully acknowledges funding from the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) through an Emmy Noether Research Group (grant number KR4801/1-1) and the DFG Sachbeihilfe (grant number KR4801/2-1), as well as from the European Research Council (ERC) under the European Union's Horizon 2020 research and innovation programme via the ERC Starting Grant MUSTANG (grant agreement number 714907).
 
 \software{

@@ -156,8 +156,16 @@ def elz_h3():
     
     plt.savefig('../plots/elz_streams_h3_dr3.png')
 
-def elz_h3_ly():
+def elz_h3_ly(streams=True):
     """"""
+    if streams:
+        alpha = 0.5
+        color = '0.4'
+        ms = 3
+    else:
+        alpha = 1
+        color = 'k'
+        ms = 4
     
     # streams
     names = get_names()
@@ -170,21 +178,22 @@ def elz_h3_ly():
     plt.close()
     fig, ax = plt.subplots(1,1,figsize=(9.5,9))
     
-    plt.plot(th['Lz'], th['E_tot_pot1'], '.', color='0.4', alpha=0.5, mew=0, ms=3)
+    plt.plot(th['Lz'], th['E_tot_pot1'], '.', color=color, alpha=alpha, mew=0, ms=ms)
     
-    for name in names[:]:
-        t = Table.read('../data/output/orbit_props_{:s}.fits'.format(name))
-        
-        lperp = np.nanmedian(np.sqrt(t['lx']**2 + t['ly']**2))
-        ly = np.nanmedian(t['ly']) + 4
-        color = ly/8.
-        if color<0: color = 0
-        if color>1: color = 1
-        plt.plot(t['lz'], t['etot'], '.', alpha=0.5, ms=3, mew=0, label=name, color=cmap(color))
-        
-        lz = np.nanmedian(t['lz']) + 0.03
-        etot = np.nanmedian(t['etot']) - 0.003
-        plt.text(lz, etot, name, fontsize='x-small')
+    if streams:
+        for name in names[:]:
+            t = Table.read('../data/output/orbit_props_{:s}.fits'.format(name))
+            
+            lperp = np.nanmedian(np.sqrt(t['lx']**2 + t['ly']**2))
+            ly = np.nanmedian(t['ly']) + 4
+            color = ly/8.
+            if color<0: color = 0
+            if color>1: color = 1
+            plt.plot(t['lz'], t['etot'], '.', alpha=0.5, ms=3, mew=0, label=name, color=cmap(color))
+            
+            lz = np.nanmedian(t['lz']) + 0*0.03
+            etot = np.nanmedian(t['etot']) - 0*0.003
+            plt.text(lz, etot, name, fontsize='x-small')
     
     #plt.plot(ts['Lz'][:imax], ts['Etot'][:imax], 'ko')
     plt.xlim(-4.5,4.5)
@@ -203,7 +212,24 @@ def elz_h3_ly():
 
     plt.tight_layout()
     
-    plt.savefig('../plots/elz_streams_ly.png')
+    plt.savefig('../plots/elz_streams_ly_{:d}.png'.format(streams))
+
+def elz_h3_feh():
+    """"""
+    th = Table.read('../data/rcat_giants.fits')
+    
+    plt.close()
+    fig, ax = plt.subplots(1,1,figsize=(9.5,9))
+    
+    plt.scatter(th['Lz'], th['E_tot_pot1'], c=th['FeH'], vmin=-2., vmax=-0.5, s=5)
+    
+    plt.xlim(-4.5,4.5)
+    plt.ylim(-0.18, -0.03)
+    
+    plt.xlabel('$L_z$ [kpc$^2$ Myr$^{-1}$]')
+    plt.ylabel('$E_{tot}$ [kpc$^2$ Myr$^{-2}$]')
+    
+    plt.tight_layout()
 
 def rapo_ecc():
     """"""
