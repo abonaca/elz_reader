@@ -427,7 +427,7 @@ def table_summary():
     N = len(t['name'])
     
     # host
-    t['host'] = ['Sagittarius', 'Sagittarius', 'none', 'Gaia-Sausage-Enceladus', 'Sagittarius', 'Sequoia / Arjuna / I\'itoi', 'Sequoia', np.nan, np.nan, 'Sequoia', 'Gaia Enceladus', 'Sequoia', 'Helmi / Wukong', 'Helmi / Wukong', 'Sagittarius', 'in situ / Helmi / Wukong', 'Helmi / Wukong', 'Cetus', 'Cetus', 'Sagittarius', 'Sequoia / Arjuna / I\'itoi', 'Cetus', 'Sequoia / Arjuna / I\'itoi']
+    t['host'] = ['Sagittarius', 'Sagittarius', 'none', 'Gaia-Sausage-Enceladus', 'Sagittarius', 'Sequoia / Arjuna / I\'itoi', 'Sequoia / Arjuna', np.nan, np.nan, 'Sequoia / Arjuna', 'Gaia-Sausage-Enceladus', 'Sequoia / Arjuna', 'Helmi / Wukong', 'Helmi / Wukong', 'Sagittarius', 'in situ / Helmi / Wukong', 'Helmi / Wukong', 'Cetus', 'Cetus', 'Sagittarius', 'Sequoia / Arjuna / I\'itoi', 'Cetus', 'Sequoia / Arjuna / I\'itoi']
     
     # progenitor
     t['progenitor'] = [np.nan, np.nan, 'itself', 'NGC 5139', 'NGC 4590', np.nan, 'NGC 3201', '(Wukong / Helmi)', '(Wukong / Helmi)', np.nan, np.nan, np.nan, np.nan, 'NGC 5024', np.nan, 'NGC 5272', 'NGC 5024', 'NGC 5824', 'NGC 5824', np.nan, np.nan, np.nan, np.nan]
