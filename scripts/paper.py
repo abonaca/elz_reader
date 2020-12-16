@@ -37,13 +37,15 @@ def elz():
     # background globular clusters
     plt.sca(ax[1])
     plt.scatter(tgc['lz'], tgc['etot'], marker='o', s=40, c=tgc['lperp'], edgecolors='none', linewidths=2, cmap='magma', vmin=0, vmax=6, label='')
-    plt.plot(tgc['lz'][ind_progenitor], tgc['etot'][ind_progenitor], 'o', color=color[1], zorder=0, ms=10, label='')
+    #plt.plot(tgc['lz'][ind_progenitor], tgc['etot'][ind_progenitor], 'o', color=color[1], zorder=0, ms=10, label='')
+    plt.plot(tgc['lz'][ind_progenitor], tgc['etot'][ind_progenitor]+0.0008, '^', color=color[1], zorder=0, ms=15, mec='k', label='')
     
     # legend entries
     f_color = 0.6
     plt.plot(10, 10, '*', color=mpl.cm.magma(f_color), ms=18, mec='k', label='Streams')
     plt.plot(10, 10, 'o', color=mpl.cm.magma(f_color), mec='none', ms=7, label='Globular clusters')
-    plt.plot(10, 10, 'o', color=mpl.cm.magma(f_color), mec=color[1], ms=10, mew=3, label='Tentative stream\nprogenitors')
+    #plt.plot(10, 10, '^', color=mpl.cm.magma(f_color), mec=color[1], ms=10, mew=3, label='Tentative stream\nprogenitors')
+    plt.plot(10, 10, '^', color=color[1], mec='k', ms=13, label='Tentative stream\nprogenitors')
     
     offsets = get_offsets()
     
@@ -185,7 +187,7 @@ def elz_origin():
     
     # plot configs
     labels = ['gse', 'sgr', 'cetus', 'sequoia', 'iitoi', 'arjuna', 'helmi',  'wukong', 'thamnos']
-    titles = ['Gaia Enceladus', 'Sagittarius', 'Cetus', 'Sequoia', "I'itoi", 'Arjuna', 'Helmi', 'Wukong', 'Thamnos']
+    titles = ['GSE', 'Sagittarius', 'Cetus', 'Sequoia', "I'itoi", 'Arjuna', 'Helmi', 'Wukong', 'Thamnos']
     colors = ['#ffa22f', '#223195', '#0085ff', '#ba532e', '#9a4526', '#6c301b', '#ca5a87', '#752c84', '#3dabdb']
     
     lw = 2
@@ -244,7 +246,7 @@ def elz_origin():
         #if j>0:
         plt.legend(handlelength=1.5, ncol=3, loc=9, fontsize='x-small', framealpha=0.8)
         
-        plt.text(0.07,0.07, titles_origin[j], fontsize='medium', transform=plt.gca().transAxes)
+        #plt.text(0.07,0.07, titles_origin[j], fontsize='medium', transform=plt.gca().transAxes)
         
         plt.xlim(-4.5,4.5)
         plt.ylim(-0.17, -0.041)
@@ -425,7 +427,7 @@ def table_summary():
     N = len(t['name'])
     
     # host
-    t['host'] = ['Sagittarius', 'Sagittarius', 'none', 'Gaia-Sausage-Enceladus', 'Sagittarius', 'Sequoia / Arjuna / I\'itoi', 'Sequoia', '(Gaia-Sausage-Enceladus)', '(Gaia-Sausage-Enceladus)', 'Sequoia', 'Gaia Enceladus', 'Sequoia', 'Helmi / Wukong', 'Helmi / Wukong', 'Sagittarius', 'in situ / Helmi / Wukong', 'Helmi / Wukong', 'Cetus', 'Cetus', 'Sagittarius', 'Sequoia / Arjuna / I\'itoi', 'Cetus', 'Sequoia / Arjuna / I\'itoi']
+    t['host'] = ['Sagittarius', 'Sagittarius', 'none', 'Gaia-Sausage-Enceladus', 'Sagittarius', 'Sequoia / Arjuna / I\'itoi', 'Sequoia', np.nan, np.nan, 'Sequoia', 'Gaia Enceladus', 'Sequoia', 'Helmi / Wukong', 'Helmi / Wukong', 'Sagittarius', 'in situ / Helmi / Wukong', 'Helmi / Wukong', 'Cetus', 'Cetus', 'Sagittarius', 'Sequoia / Arjuna / I\'itoi', 'Cetus', 'Sequoia / Arjuna / I\'itoi']
     
     # progenitor
     t['progenitor'] = [np.nan, np.nan, 'itself', 'NGC 5139', 'NGC 4590', np.nan, 'NGC 3201', '(Wukong / Helmi)', '(Wukong / Helmi)', np.nan, np.nan, np.nan, np.nan, 'NGC 5024', np.nan, 'NGC 5272', 'NGC 5024', 'NGC 5824', 'NGC 5824', np.nan, np.nan, np.nan, np.nan]
